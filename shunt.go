@@ -12,26 +12,26 @@ func intopostRegex(infix string) string {
 	for _, r := range infix {
 		switch {
 		case r == '(':
-			stack = append(stack, r) // push token to stack
+			stack = append(stack, r) // push token to the stack
 		case r == ')':
 			for stack[len(stack)-1] != '(' {
-				postfix = append(postfix, stack[len(stack)-1]) // push token to output
-				stack = stack[:len(stack)-1] // everything in stack except the last element
+				postfix = append(postfix, stack[len(stack)-1]) // push the last element in the stack to the output
+				stack = stack[:len(stack)-1] // everything in the stack except the last element
 			}
 			stack = stack[:len(stack)-1]
 		case specials[r] > 0:
 			for len(stack) > 0 && specials[r] <= specials[stack[len(stack)-1]] { // move higher precedence to the left
-				postfix = append(postfix, stack[len(stack)-1]) // push token to output
-				stack = stack[:len(stack)-1] // everything in stack except the last element
+				postfix = append(postfix, stack[len(stack)-1]) // push the last element in the stack to the output
+				stack = stack[:len(stack)-1] // everything in the stack except the last element
 			}
-			stack = append(stack, r)
+			stack = append(stack, r) // push token to the stack
 		default:
-			postfix = append(postfix, r)
+			postfix = append(postfix, r) // push token to the output
 		}
 	}
 
 	for len(stack) > 0 {
-		postfix = append(postfix, stack[len(stack)-1]) // takes top(last) of the element then put into postfix
+		postfix = append(postfix, stack[len(stack)-1]) // push the last element in the stack to the output
 		stack = stack[:len(stack)-1] // everything in stack except the last element
 	}
 
@@ -46,26 +46,26 @@ func intopostArith(infix string) string {
 	for _, r := range infix {
 		switch {
 		case r == '(':
-			stack = append(stack, r) // push token to stack
+			stack = append(stack, r) // push token to the stack
 		case r == ')':
 			for stack[len(stack)-1] != '(' {
-				postfix = append(postfix, stack[len(stack)-1]) // push token to output
+				postfix = append(postfix, stack[len(stack)-1]) // push the last element in the stack to the output
 				stack = stack[:len(stack)-1] // everything in stack except the last element
 			}
 			stack = stack[:len(stack)-1]
 		case specials[r] > 0:
 			for len(stack) > 0 && specials[r] <= specials[stack[len(stack)-1]] { // move higher precedence to the left
-				postfix = append(postfix, stack[len(stack)-1]) // push token to output
+				postfix = append(postfix, stack[len(stack)-1]) // push the last element in the stack to the output
 				stack = stack[:len(stack)-1] // everything in stack except the last element
 			}
-			stack = append(stack, r)
+			stack = append(stack, r) // push token to the stack
 		default:
-			postfix = append(postfix, r)
+			postfix = append(postfix, r) // push token to the output
 		}
 	}
 
 	for len(stack) > 0 {
-		postfix = append(postfix, stack[len(stack)-1]) // takes top(last) of the element then put into postfix
+		postfix = append(postfix, stack[len(stack)-1]) // push the last element in the stack to the output
 		stack = stack[:len(stack)-1] // everything in stack except the last element
 	}
 
