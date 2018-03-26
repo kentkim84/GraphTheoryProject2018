@@ -4,14 +4,15 @@ import (
 	"fmt"
 )
 
-func intopost(infix string) string
-{
-	postfix := ""
-	return postfix
+func intopost(infix string) string {
+	specials := map[rune]int{'*': 10, '.': 9, '|': 8}
+	postfix := []rune{} // character as utf8
+	stack := []rune{} // stack
+
+	return string(postfix)
 }
 
-func main() 
-{
+func main() {
 	// Answer: ab.c*.
 	fmt.Println("Infix: ", "a.b.c*")
 	fmt.Println("Postfix: ", intopost("a.b.c*"))
